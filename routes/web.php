@@ -18,3 +18,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('/grupo')->group(function () {
+    Route::get('/listar', 'GruposController@index')->name('grupo-listar');
+});
