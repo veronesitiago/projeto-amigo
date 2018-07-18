@@ -3,27 +3,39 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+/**
+ *  Classe dos usuários registrados no projeto
+ */
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
+    /**
+     * @string  Nome da tabela no DB
+     */
+    protected $table = 'tab_usuarios';
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @array Campos a serem retornados para a view
      */
     protected $fillable = [
-        'name', 'email', 'password',
+      'id',
+      'nome',
+      'email',
+      'password',
+      'sexo'
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * @array Campos protegidos
      */
     protected $hidden = [
-        'password', 'remember_token',
+      'password',
+      'created_at',
+      'updated_at',
+      'deleted_at',
+      'remember_token'
     ];
+
 }
