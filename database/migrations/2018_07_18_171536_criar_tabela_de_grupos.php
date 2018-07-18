@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CriarTabelaGrupos extends Migration
+class CriarTabelaDeGrupos extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CriarTabelaGrupos extends Migration
      */
     public function up()
     {
-        Schema::table('tab_grupos', function (Blueprint $table) {
+        Schema::create('tab_grupos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('desc_grupo', 255);
-            $table->string('observacao', 500);
+            $table->string('desc_grupo', 255)->nullable();
+            $table->string('observacao', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

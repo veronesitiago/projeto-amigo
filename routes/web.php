@@ -21,4 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('/grupo')->group(function () {
     Route::get('/listar', 'GruposController@index')->name('grupo-listar');
+    Route::get('/cadastro', 'GruposController@cadastro')->name('grupo-cadastro');
+    Route::post('/cadastrar', 'GruposController@registrar')->name('grupo-cadastrar');
+    Route::get('/exibir/{id}', 'GruposController@exibir')->name('grupo-exibir');
+    Route::get('/convidar/{id}', 'GruposController@convidar')->name('grupo-convidar');
 });
