@@ -30,4 +30,14 @@ class Grupos extends Model
       'updated_at',
       'deleted_at'
     ];
+
+    /**
+     * Relacionamento com relação de usuários participantes do grupo.
+     *
+     * @return App\GruposUsuarios
+     */
+    public function participantes()
+    {
+      return $this->hasMany('\App\GruposUsuarios', 'id_grupo')->orderBy('id_usuario', 'desc');
+    }
 }

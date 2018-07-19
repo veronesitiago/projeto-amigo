@@ -26,9 +26,12 @@ class GruposController extends Controller
    */
   public function index()
   {
-      $grupos = $this->getRegistros();
+      $query = request()->query();
+
+      $grupos = $this->getRegistros($query);
 
       $arrRetorno = [
+        'query' => $query,
         'grupos' => $grupos
       ];
       return view('grupo.listar', $arrRetorno);
@@ -37,9 +40,18 @@ class GruposController extends Controller
   /**
    * Retorna todos os registros
    */
-  public function getRegistros()
+  public function getRegistros(array $uriQuery = [])
   {
-    return Grupos::all();
+
+    $registros = Grupos::withTrashed();
+
+    if (!empty($uriQuery)) {
+        if (!isset($uriQuery['id'])) return $registros->where('id', $uriQuery['id'])->paginate(15);
+
+        return [];
+    }
+
+    return $registros->paginate(15);
   }
 
   /**
@@ -112,6 +124,21 @@ class GruposController extends Controller
       'grupo' => Grupos::findOrFail($id)
     ];
     return view('grupo.convidar', $arrRetorno);
+  }
+
+  /**
+   * Participantes do grupo
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function participantes(int $id)
+  {
+    $arrRetorno = [
+      'grupo' => Grupos::findOrFail($id)
+    ];
+
+    return view('grupo.participantes', $arrRetorno);
   }
 
 }

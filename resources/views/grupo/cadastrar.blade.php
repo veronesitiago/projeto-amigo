@@ -9,8 +9,19 @@
             <meta name="csrf-token" content="{{ csrf_token() }}" />
 
             <div class="modal-header">
-                <h5>Grupos > Cadastrar</h5>
+
+                @if(!empty($grupo))                    
+                    <h5>Grupo: {{ $grupo->desc_grupo }} > Editar</h5>
+                @else
+                    <h5>Grupos > Cadastrar</h5>
+                @endif
             </div>
+
+            <nav class="navbar navbar-page">
+                <div class="container-fluid no-padding">
+                    @include('grupo.menu')
+                </div>
+            </nav>
 
             <form
                 role="form"

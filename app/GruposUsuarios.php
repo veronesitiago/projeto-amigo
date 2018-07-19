@@ -12,7 +12,7 @@ class GruposUsuarios extends Model
     /**
      * @string  Nome da tabela no DB
      */
-    protected $table = 'tab_grupos';
+    protected $table = 'tab_grupos_usuarios';
     /**
      * @array Campos a serem retornados para a view
      */
@@ -30,4 +30,14 @@ class GruposUsuarios extends Model
       'updated_at',
       'deleted_at'
     ];
+
+    /**
+     * Relacionamento com usuários participantes.
+     *
+     * @return App\User
+     */
+    public function dados()
+    {
+        return $this->hasOne('\App\User', 'id', 'id_usuario');
+    }
 }

@@ -25,4 +25,6 @@ Route::prefix('/grupo')->group(function () {
     Route::post('/cadastrar', 'GruposController@registrar')->name('grupo-cadastrar');
     Route::get('/exibir/{id}', 'GruposController@exibir')->name('grupo-exibir');
     Route::get('/convidar/{id}', 'GruposController@convidar')->name('grupo-convidar');
+    Route::get('/listar-participantes/{id}', 'GruposController@participantes')->name('grupo-participantes');
+
 });
