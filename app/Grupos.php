@@ -40,4 +40,14 @@ class Grupos extends Model
     {
       return $this->hasMany('\App\GruposUsuarios', 'id_grupo')->orderBy('id_usuario', 'desc');
     }
+
+    /**
+     * Relacionamento com relação de sessões participantes do grupo.
+     *
+     * @return App\GruposSessoes
+     */
+    public function sessoes()
+    {
+      return $this->hasMany('\App\GruposSessoes', 'id_grupo')->orderBy('data_confraternizar', 'desc');
+    }
 }

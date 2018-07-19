@@ -141,4 +141,19 @@ class GruposController extends Controller
     return view('grupo.participantes', $arrRetorno);
   }
 
+  /**
+   * Sessões do grupo
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+  public function listaSessoes(int $id)
+  {
+    $arrRetorno = [
+      'grupo' => Grupos::findOrFail($id)
+    ];
+
+    return view('sessoes.listar', $arrRetorno);
+  }
+
 }

@@ -10,15 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/**
+ * Grupo de rotas para os grupos
+ */
 Route::prefix('/grupo')->group(function () {
     Route::get('/listar', 'GruposController@index')->name('grupo-listar');
     Route::get('/cadastro', 'GruposController@cadastro')->name('grupo-cadastro');
@@ -27,4 +25,5 @@ Route::prefix('/grupo')->group(function () {
     Route::get('/convidar/{id}', 'GruposController@convidar')->name('grupo-convidar');
     Route::get('/listar-participantes/{id}', 'GruposController@participantes')->name('grupo-participantes');
 
+    Route::get('/listar-sessoes/{id}', 'GruposController@listaSessoes')->name('grupo-sessoes');
 });
