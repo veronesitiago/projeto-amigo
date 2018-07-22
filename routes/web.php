@@ -27,3 +27,11 @@ Route::prefix('/grupo')->group(function () {
 
     Route::get('/listar-sessoes/{id}', 'GruposController@listaSessoes')->name('grupo-sessoes');
 });
+
+/**
+ * Grupo de rotas para as sessões
+ */
+Route::prefix('/sessao')->group(function () {
+    Route::get('/listar/{id}', 'SessoesController@listaSessoes')->name('sessao-sessoes');
+    Route::post('/cadastrar', 'SessoesController@registrar')->name('sessao.cadastrar');
+});

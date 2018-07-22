@@ -5,6 +5,10 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
+
+use App\GruposUsuarios;
+use App\GruposSessoes;
 
 class Grupos extends Model
 {
@@ -49,5 +53,27 @@ class Grupos extends Model
     public function sessoes()
     {
       return $this->hasMany('\App\GruposSessoes', 'id_grupo')->orderBy('data_confraternizar', 'desc');
+    }
+
+    /**
+     * Metódo para pegar a quantidade de participantes do grupo
+     */
+    public function quantidadeParticipantes()
+    {
+        return GruposUsuarios::where("id_grupo", "=", $this->id)->get()->count();
+    }
+
+    /**
+     * Metódo para pegar a quantidade de sessões do grupo
+     */
+    public function quantidadeSessoes()
+    {
+        return GruposSessoes::where("id_grupo", "=", $this->id)
+                ->where(function($subCondicao){
+                  $subCondicao->where('data_sorteio', ">", Carbon::now())
+                    ->orWhere('data_confraternizar', ">", Carbon::now());
+                })
+                ->get()
+                ->count();
     }
 }
