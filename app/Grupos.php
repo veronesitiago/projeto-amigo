@@ -76,4 +76,14 @@ class Grupos extends Model
                 ->get()
                 ->count();
     }
+
+    /**
+     * Metódo para retornar as sessões que ainda não foram notificadas
+     */
+    public function novasSessoes()
+    {
+      return GruposSessoes::whereNull("data_notificacao")->get();
+    }
+
+
 }

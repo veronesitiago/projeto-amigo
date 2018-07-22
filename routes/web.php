@@ -22,7 +22,7 @@ Route::prefix('/grupo')->group(function () {
     Route::get('/cadastro', 'GruposController@cadastro')->name('grupo-cadastro');
     Route::post('/cadastrar', 'GruposController@registrar')->name('grupo-cadastrar');
     Route::get('/exibir/{id}', 'GruposController@exibir')->name('grupo-exibir');
-    Route::get('/convidar/{id}', 'GruposController@convidar')->name('grupo-convidar');
+    Route::post('/convidar', 'EmailController@convidar')->name('grupo-convidar');
     Route::get('/listar-participantes/{id}', 'GruposController@participantes')->name('grupo-participantes');
 
     Route::get('/listar-sessoes/{id}', 'GruposController@listaSessoes')->name('grupo-sessoes');

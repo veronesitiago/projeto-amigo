@@ -1,5 +1,9 @@
 $("#modalEditarCadastrar").on('hidden.bs.modal', function () {
-  console.log('nada', $(this).data('id_grupo'));
+      $("#desc_sessao").val('');
+      $("#data_sorteio").val('');
+      $("#valor_presente_ate").val('');
+      $("#data_confraternizar").val('');
+      $("#local").val('');
 });
 
 /**

@@ -33,34 +33,46 @@
     </header>
     <div class="table-responsive">
       <input id="id_grupo" type="hidden" name="id_grupo" value=" {{ empty($grupo) ? '' : $grupo->id }}" />
-      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-        <thead>
-          <tr>
-            <th>Sessão</th>
-            <th>Data Sorteio</th>
-            <th>Valor Presente</th>
-            <th>Data Confraternizar</th>
-            <th>Operações</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($grupo->sessoes as $sessao)
+      @if ($grupo->quantidadeSessoes() > 0)
+          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <thead>
               <tr>
-                  <td>{{ $sessao->desc_sessao }}</td>
-                  <td>{{ $sessao->data_sorteio }}</td>
-                  <td>{{ $sessao->valor_presente_ate }}</td>
-                  <td>{{ $sessao->data_confraternizar }}</td>
-
-                  <td class="text-right ">
-                      <a href="/grupo/exibir/{{ $sessao->id }}" class="btn btn-default btn-xs">
-                          <i class="fa fa-eye" aria-hidden="true"></i>
-                          Exibir
-                      </a>
-                  </td>
+                <th>Sessão</th>
+                <th>Data Sorteio</th>
+                <th>Valor Presente</th>
+                <th>Data Confraternizar</th>
+                <th>Operações</th>
               </tr>
-          @endforeach
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+              @foreach($grupo->sessoes as $sessao)
+                  <tr>
+                      <td>{{ $sessao->desc_sessao }}</td>
+                      <td>{{ $sessao->getData($sessao->data_sorteio) }}</td>
+                      <td>R$ {{ number_format($sessao->valor_presente_ate, 2, ',', '') }}</td>
+                      <td>{{ $sessao->getData($sessao->data_confraternizar) }}</td>
+
+                      <td class="text-right ">
+                          <a href="/grupo/exibir/{{ $sessao->id }}" class="btn btn-default btn-xs">
+                              <i class="fa fa-eye" aria-hidden="true"></i>
+                              Exibir
+                          </a>
+                      </td>
+                  </tr>
+              @endforeach
+            </tbody>
+          </table>
+        @else
+
+              <div
+                  id="noResult"
+                  class="well text-center center col-md-8 col-xs-12"
+                  role="alert"
+              >
+                  Nenhuma sessão ativa para o seu grupo, crie uma!
+              </div>
+
+        @endif
     </div>
   </div>
 

@@ -63,6 +63,7 @@ class SessoesController extends Controller
     $validator = Validator::make(Input::all(), $this->regrasSalvar());
 
     if ($validator->fails()) {
+        dd($validator->fails());
         return back()->withErrors($validator->messages());
     }
 
@@ -74,7 +75,8 @@ class SessoesController extends Controller
     $sessao->id_grupo = $request->id_grupo;
     $sessao->desc_sessao = $request->desc_sessao;
     $sessao->data_sorteio = $data_sorteio;
-    $sessao->valor_presente_ate = $request->valor_presente_ate;
+
+    $sessao->valor_presente_ate = (float) $request->valor_presente_ate;
     $sessao->data_confraternizar = $data_confraternizar;
     $sessao->local = $request->local;
 
