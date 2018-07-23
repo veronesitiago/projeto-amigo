@@ -45,8 +45,9 @@ class GruposController extends Controller
   public function getRegistros(array $uriQuery = [])
   {
 
-    // $registros = Grupos::withTrashed()->where('id_moderador', Auth::user()->id);
-    $registros = GruposUsuarios::where('id_usuario', Auth::user()->id);
+    $registros = Grupos::withTrashed()->where('id_moderador', Auth::user()->id);
+    // Necessário implementar rotina para contemplar os grupos que o usuário não é moderador, é apenas participante
+    // $registros = GruposUsuarios::where('id_usuario', Auth::user()->id);
 
     if (!empty($uriQuery)) {
         if (!isset($uriQuery['id'])) return $registros->where('id', $uriQuery['id'])->paginate(15);
@@ -94,6 +95,12 @@ class GruposController extends Controller
 
     try {
       $grupo->save();
+      if (empty($request->id)) {
+        $participantes = new GruposUsuarios;
+        $participantes->id_grupo = $grupo->id;
+        $participantes->id_usuario = Auth::user()->id;
+        $participantes->save();
+      }
       return back()->with("success", ["Grupo registrado com sucesso."]);
 
     } catch (\Illuminate\Database\QueryException $e) {

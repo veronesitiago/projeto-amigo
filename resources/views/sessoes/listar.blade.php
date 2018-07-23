@@ -53,7 +53,7 @@
                       <td>{{ $sessao->getData($sessao->data_confraternizar) }}</td>
 
                       <td class="text-right ">
-                          <a href="/grupo/exibir/{{ $sessao->id }}" class="btn btn-default btn-xs">
+                          <a href="#" class="btn btn-default btn-xs">
                               <i class="fa fa-eye" aria-hidden="true"></i>
                               Exibir
                           </a>

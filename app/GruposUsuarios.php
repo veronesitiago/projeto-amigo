@@ -44,6 +44,6 @@ class GruposUsuarios extends Model
 
     public function grupos()
     {
-       return $this->hasMany('\App\Grupos', 'id', 'id_grupo');
+       return $this->hasOne('\App\Grupos', 'id', 'id_grupo');
     }
 }
