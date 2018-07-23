@@ -35,3 +35,12 @@ Route::prefix('/sessao')->group(function () {
     Route::get('/listar/{id}', 'SessoesController@listaSessoes')->name('sessao-sessoes');
     Route::post('/cadastrar', 'SessoesController@registrar')->name('sessao.cadastrar');
 });
+
+/**
+ * Grupo de rotas para os usuários
+ */
+Route::prefix('/usuario')->group(function () {
+    Route::get('/dados', 'UsuariosController@index')->name('usuarios-dados');
+    Route::post('/editar', 'UsuariosController@editar')->name('usuarios-editar');
+    Route::get('/exibir-lista', 'UsuariosController@lista')->name('usuarios-lista');
+});

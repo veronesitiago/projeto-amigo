@@ -31,7 +31,7 @@
         </a>
         <ul class="sidenav-second-level collapse" id="collapseComponents">
           <li>
-            <a href="navbar.html">Meus Dados</a>
+            <a href="{{ url('/usuario/dados') }}">Meus Dados</a>
           </li>
           <li>
             <a href="cards.html">Lista de Desejos</a>
