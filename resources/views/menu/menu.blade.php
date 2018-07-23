@@ -34,7 +34,7 @@
             <a href="{{ url('/usuario/dados') }}">Meus Dados</a>
           </li>
           <li>
-            <a href="cards.html">Lista de Desejos</a>
+            <a href="{{ url('usuario/exibir-lista') }}">Lista de Desejos</a>
           </li>
           <li>
             <a href="cards.html">Alterar Senha</a>

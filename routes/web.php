@@ -43,4 +43,6 @@ Route::prefix('/usuario')->group(function () {
     Route::get('/dados', 'UsuariosController@index')->name('usuarios-dados');
     Route::post('/editar', 'UsuariosController@editar')->name('usuarios-editar');
     Route::get('/exibir-lista', 'UsuariosController@lista')->name('usuarios-lista');
+    Route::get('/item/{id}', 'UsuariosController@itemListar')->name('item-listar');
+    Route::get('/item-cadastrar', 'UsuariosController@itemCadastrar')->name('item-cadastrar');
 });

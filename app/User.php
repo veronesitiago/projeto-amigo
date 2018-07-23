@@ -38,4 +38,14 @@ class User extends Authenticatable
       'remember_token'
     ];
 
+
+    /**
+     * Relacionamento com relação de usuários participantes do grupo.
+     *
+     * @return App\UsuarioListaDesejo
+     */
+    public function listaDesejo()
+    {
+      return $this->hasOne('\App\UsuarioListaDesejo', 'id_usuario')->orderBy('valor', 'desc');
+    }
 }
