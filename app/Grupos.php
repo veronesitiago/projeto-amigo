@@ -85,5 +85,8 @@ class Grupos extends Model
       return GruposSessoes::whereNull("data_notificacao")->get();
     }
 
-
+    public function sessoesSemSorteio()
+    {
+      return GruposSessoes::whereNull("soteio_realizado")->where("data_sorteio", "<=", Carbon::now())->get();
+    }
 }

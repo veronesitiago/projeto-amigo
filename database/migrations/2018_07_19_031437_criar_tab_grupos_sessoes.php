@@ -20,7 +20,9 @@ class CriarTabGruposSessoes extends Migration
             $table->dateTime('data_sorteio');
             $table->decimal('valor_presente_ate', 8, 2)->nullable();
             $table->dateTime('data_confraternizar');
+            $table->dateTime('data_notificacao')->nullable();
             $table->string('local', 500)->nullable();
+            $table->boolean('soteio_realizado')->default(false);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('id_grupo')->references('id')->on('tab_grupos');

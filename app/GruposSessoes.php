@@ -25,7 +25,8 @@ class GruposSessoes extends Model
       'valor_presente_ate',
       'data_confraternizar',
       'local',
-      'data_notificacao'
+      'data_notificacao',
+      'soteio_realizado'
     ];
 
     /**

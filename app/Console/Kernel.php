@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Http\Services\Email;
+use App\Http\Services\Sorteio;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,10 +25,13 @@ class Kernel extends ConsoleKernel
      * @return void
      */
     protected function schedule(Schedule $schedule)
-    {        
+    {
         $schedule->call(function() {
             $servicoEmail = new Email;
             $servicoEmail->emailNovaSessao();
+
+            $sorteio = new Sorteio;
+            $sorteio->verificar();
         })->everyMinute();
     }
 
