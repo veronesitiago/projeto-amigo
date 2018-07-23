@@ -21,7 +21,7 @@
                 id="cadastrar"
                 type="button"
                 data-toggle="modal"
-                data-target="#modalEditarCadastrar"
+                data-target="#modalInserirParticipante"
                 data-tipo="Cadastrar"
             >
                 <i class="fa fa-plus" aria-hidden="true"></i>

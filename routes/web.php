@@ -30,6 +30,8 @@ Route::prefix('/grupo')->group(function () {
     Route::get('/listar-participantes/{id}', 'GruposController@participantes')->name('grupo-participantes');
 
     Route::get('/listar-sessoes/{id}', 'GruposController@listaSessoes')->name('grupo-sessoes');
+
+    Route::post('/inserir-usuario', 'GruposController@inserirParticipante')->name('usuario-inserir');
 });
 
 /**

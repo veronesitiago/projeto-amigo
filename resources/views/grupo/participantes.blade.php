@@ -30,6 +30,17 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 Convidar
             </button>
+            <button
+                class="btn btn-primary btn-xs"
+                id="cadastrar"
+                type="button"
+                data-toggle="modal"
+                data-target="#modalInserirParticipante"
+                data-tipo="Cadastrar"
+            >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Inserir
+            </button>
         </h2>
     </header>
     <div class="table-responsive">
@@ -81,5 +92,6 @@
 
 </div>
 @include('grupo.modal-participantes')
+@include('grupo.modal-inserir-participante')
 <script type="text/javascript" src={{ asset('/js/participantes.js') }}></script>
 @endsection

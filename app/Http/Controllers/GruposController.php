@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Input;
 use \Illuminate\Support\Facades\Validator;
+
+use App\User;
 use App\Grupos;
 use App\GruposUsuarios;
 
@@ -34,7 +36,8 @@ class GruposController extends Controller
 
       $arrRetorno = [
         'query' => $query,
-        'grupos' => $grupos
+        'grupos' => $grupos,
+        'usuarios' => User::all()
       ];
       return view('grupo.listar', $arrRetorno);
   }
@@ -146,7 +149,8 @@ class GruposController extends Controller
   public function participantes(int $id)
   {
     $arrRetorno = [
-      'grupo' => Grupos::findOrFail($id)
+      'grupo' => Grupos::findOrFail($id),
+      'usuarios' => User::all()
     ];
 
     return view('grupo.participantes', $arrRetorno);
@@ -165,6 +169,11 @@ class GruposController extends Controller
     ];
 
     return view('sessoes.listar', $arrRetorno);
+  }
+
+  public function inserirParticipante(Request $request)
+  {
+
   }
 
 }
