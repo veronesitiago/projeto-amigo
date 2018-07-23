@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use \Illuminate\Support\Facades\Input;
 use \Illuminate\Support\Facades\Validator;
 use App\Grupos;
+use App\GruposUsuarios;
 
 class GruposController extends Controller
 {
@@ -43,7 +45,8 @@ class GruposController extends Controller
   public function getRegistros(array $uriQuery = [])
   {
 
-    $registros = Grupos::withTrashed();
+    // $registros = Grupos::withTrashed()->where('id_moderador', Auth::user()->id);
+    $registros = GruposUsuarios::where('id_usuario', Auth::user()->id);
 
     if (!empty($uriQuery)) {
         if (!isset($uriQuery['id'])) return $registros->where('id', $uriQuery['id'])->paginate(15);
@@ -85,6 +88,7 @@ class GruposController extends Controller
     }
 
     $grupo = Grupos::findOrNew($request->id);
+    $grupo->id_moderador = Auth::user()->id;
     $grupo->desc_grupo = $request->desc_grupo;
     $grupo->observacao = $request->observacao;
 

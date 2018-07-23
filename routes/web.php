@@ -10,9 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+Route::get('/', function () {
+    return view('auth.login');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes();
 
 /**
  * Grupo de rotas para os grupos
@@ -44,5 +46,7 @@ Route::prefix('/usuario')->group(function () {
     Route::post('/editar', 'UsuariosController@editar')->name('usuarios-editar');
     Route::get('/exibir-lista', 'UsuariosController@lista')->name('usuarios-lista');
     Route::get('/item/{id}', 'UsuariosController@itemListar')->name('item-listar');
-    Route::get('/item-cadastrar', 'UsuariosController@itemCadastrar')->name('item-cadastrar');
+    Route::post('/item-cadastrar', 'UsuariosController@itemCadastrar')->name('item-cadastrar');
+
+    Route::get('/logout', 'UsuariosController@logout')->name('usuario-logout');
 });

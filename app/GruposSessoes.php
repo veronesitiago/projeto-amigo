@@ -56,4 +56,13 @@ class GruposSessoes extends Model
     {
         return GruposUsuarios::where("id_grupo", "=", $this->id_grupo)->get();
     }
+
+    /**
+     * Metódo que recupera a quantidade de participantes
+     * @return App\GruposUsuarios
+     */
+    public function Qtdeparticipantes()
+    {
+        return GruposUsuarios::where("id_grupo", "=", $this->id_grupo)->get()->count();
+    }
 }

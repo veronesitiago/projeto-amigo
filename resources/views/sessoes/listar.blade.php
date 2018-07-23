@@ -3,7 +3,7 @@
 @section('content')
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="#">Meus Grupos</a>
+    <a href="{{ url('/grupo/listar') }}">Meus Grupos</a>
   </li>
   <li class="breadcrumb-item active">Sessões</li>
 </ol>

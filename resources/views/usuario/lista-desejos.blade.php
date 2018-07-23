@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="#">Meus Dados</a>
+    <a href="{{ url('/usuario/dados') }}">Meus Dados</a>
   </li>
   <li class="breadcrumb-item active">Exibir</li>
 </ol>
@@ -30,7 +30,7 @@
         </h2>
     </header>
     <div class="table-responsive">
-      @if (!empty($usuario->listaDesejo()))
+
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
           <thead>
             <tr>
@@ -48,15 +48,17 @@
                     <td> {{ $item->link }} </td>
 
                     <td class="text-right ">
-                        <a href="/usuario/item/{{ $item->id }}" class="btn btn-default btn-xs">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            Exibir
-                        </a>
+                        <button type="button" class="btn btn-primary btn-xs  table-icon" data-toggle="modal" data-id="{{ $item->id }}" data-target="#modalEditarCadastrar">
+                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                            Editar
+                        </button>
                     </td>
+
                 </tr>
             @endforeach
           </tbody>
         </table>
+      @if (!empty($usuario->listaDesejo()))
       @else
 
             <div

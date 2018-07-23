@@ -15,9 +15,12 @@ class Sorteio
                    ->get();
 
         $sessoes->each(function($sessao){
-          $this->sorteio($sessao->id, $sessao->id_grupo, $sessao->participantes());
+          // Realizar o sorteio somente se a quantidade de participantes for maior igual a 2
+          if ($sessao->Qtdeparticipantes() >= 2) {
+            $this->sorteio($sessao->id, $sessao->id_grupo, $sessao->participantes());
 
-          $sessao->update(['soteio_realizado' => 1]);
+            $sessao->update(['soteio_realizado' => 1]);
+          }
         });
     }
 

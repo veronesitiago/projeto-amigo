@@ -8,6 +8,7 @@ use \Illuminate\Support\Facades\Input;
 use \Illuminate\Support\Facades\Validator;
 
 use App\User;
+use App\UsuarioListaDesejo;
 
 class UsuariosController extends Controller
 {
@@ -101,10 +102,42 @@ class UsuariosController extends Controller
      */
     public function itemCadastrar(Request $request)
     {
+        $lista = UsuarioListaDesejo::findOrNew($request->id);
+        $lista->id_usuario = Auth::user()->id;
+        $lista->desc_item = $request->desc_item;
+        $lista->valor = $request->valor;
+        $lista->link = $request->link;
+        $lista->observacao = $request->observacao;
 
+        $lista->save();
+        try {
+          return back()->with("success", ["Item registrado com sucesso."]);
+
+        } catch (\Illuminate\Database\QueryException $e) {
+          return back()->withErrors(["Não foi possível concluir a operação, tente novamente."]);
+        }
     }
 
+    /**
+     * Metódo para logout do usuário, que redericiona para página inicial
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect("/login");
+    }
 
+    public function itemListar(int $idItem)
+    {
+      $usuario = User::findOrFail(Auth::user()->id);
+      $item = UsuarioListaDesejo::where("id", $idItem)->get();
+      
+      $arrRetorno = [
+        'usuario' => $usuario,
+        'item' => $item
+      ];
 
+      return view('usuario.lista-desejos', $arrRetorno);
+    }
 
 }

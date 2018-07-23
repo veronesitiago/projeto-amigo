@@ -15,10 +15,12 @@ class CriarTabelaDeGrupos extends Migration
     {
         Schema::create('tab_grupos', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('id_moderador')->unsigned();
             $table->string('desc_grupo', 255)->nullable();
             $table->string('observacao', 500)->nullable();
             $table->timestamps();
             $table->softDeletes();
+            $table->foreign('id_moderador')->references('id')->on('tab_usuarios');
         });
     }
 
@@ -29,6 +31,10 @@ class CriarTabelaDeGrupos extends Migration
      */
     public function down()
     {
+        Schema::table('tab_grupos', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+            $table->dropForeign(['id_moderador']);
+        });
         Schema::dropIfExists('tab_grupos');
     }
 }

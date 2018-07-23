@@ -40,4 +40,10 @@ class GruposUsuarios extends Model
     {
         return $this->hasOne('\App\User', 'id', 'id_usuario');
     }
+
+
+    public function grupos()
+    {
+       return $this->hasMany('\App\Grupos', 'id', 'id_grupo');
+    }
 }

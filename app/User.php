@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\UsuarioListaDesejo;
 /**
  *  Classe dos usuários registrados no projeto
  */
@@ -46,6 +47,7 @@ class User extends Authenticatable
      */
     public function listaDesejo()
     {
-      return $this->hasOne('\App\UsuarioListaDesejo', 'id_usuario')->orderBy('valor', 'desc');
+      // return $this->hasMany('\App\UsuarioListaDesejo');
+      return UsuarioListaDesejo::where("id_usuario", "=", $this->id)->get();
     }
 }

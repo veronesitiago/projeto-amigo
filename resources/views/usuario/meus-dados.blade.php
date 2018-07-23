@@ -4,7 +4,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">
-    <a href="#">Minha Conta</a>
+    <a href="{{ url('/usuario/dados') }}">Meus Dados</a>
   </li>
   <li class="breadcrumb-item active">Editar</li>
 </ol>
